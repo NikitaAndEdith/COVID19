@@ -1,35 +1,35 @@
-// html {
-//     font-size: 125%;
-// }
+html {
+    font-size: 125%;
+}
 
-// body {
-//     background-color: $background-color;
-//     height: 100vh;
-// }
+body {
+    background-color: $background-color;
+    height: 100vh;
+}
 
-// p {
-//     font-family: $body-font;
-//     color: $font-color;
+p {
+    font-family: $body-font;
+    color: $font-color;
     
-// }
+}
 
-// h1, h2, h3 {
-//     font-family: $heading-font;
-// }
+.headers {
+    font-family: $heading-font;
+}
 
-// h1 {
-//     font-size: 2rem;
-// }
-
-
+h1 {
+    font-size: 2rem;
+}
 
 
 
 
 
+
+//drop down logic Styles START here
+//Source: https://github.com/Godsont/Custom-Select-Box-with-Search
 * {
   margin: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -37,13 +37,14 @@ body {
   background: #f7f6ff;
 }
 
-h2 {
+.title {
   margin: 16px;
 }
 
 .container {
-  margin-top: 100px;
+  margin-top: 16px;
   padding: 32px;
+  border: 1px solid red;
 }
 
 .select-box {
@@ -78,8 +79,8 @@ h2 {
 
 .selected::after {
   content: "";
-  background: url("img/arrow-down.svg");
-  background-size: contain;
+    background: url("../img/down-arrow.svg");
+    background-size: contain;
   background-repeat: no-repeat;
 
   position: absolute;
@@ -157,3 +158,4 @@ h2 {
   opacity: 1;
   pointer-events: auto;
 }
+//drop down logic ENDS here

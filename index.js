@@ -42,10 +42,12 @@ covidApp.dropDown = ()=>{
     };
 };
 
-// covidApp.getCountries = {
 
-// };
 
 covidApp.init = ()=>{
     covidApp.dropDown();
 };
+
+$(function() {
+    covidApp.init();
+});
