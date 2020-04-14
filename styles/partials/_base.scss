@@ -1,0 +1,22 @@
+html {
+    font-size: 125%;
+}
+
+body {
+    background-color: $background-color;
+    height: 100vh;
+}
+
+p {
+    font-family: $body-font;
+    color: $font-color;
+    
+}
+
+h1, h2, h3 {
+    font-family: $heading-font;
+}
+
+h1 {
+    font-size: 2rem;
+}
