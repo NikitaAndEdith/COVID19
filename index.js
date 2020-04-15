@@ -1,11 +1,10 @@
 const covidApp = {};
-
 covidApp.dropDown = ()=>{
     //source for the DropDown menu design and logic:  https://github.com/Godsont/Custom-Select-Box-with-Search
     const selected = document.querySelector(".selected");
     const optionsContainer = document.querySelector(".options-container");
     const searchBox = document.querySelector(".search-box input");
-    const optionsList = document.querySelectorAll(".option");
+
 
     selected.addEventListener("click", () => {
         optionsContainer.classList.toggle("active");
@@ -17,15 +16,14 @@ covidApp.dropDown = ()=>{
             searchBox.focus();
         };
     });
-
-
-
-    optionsList.forEach(o => {
+ 
+    covidApp.optionsList.forEach(o => {
         o.addEventListener("click", () => {
             selected.innerHTML = o.querySelector("label").innerHTML;
             optionsContainer.classList.remove("active");
         });
-    });
+    }
+    );
 
     searchBox.addEventListener("keyup", function (e) {
         filterList(e.target.value);
@@ -63,16 +61,16 @@ covidApp.getCountries = () =>{
             </div>
             `);
             $('.option').on('click', function () {
-                console.log(this)
+                // console.log(this)
             });
         });
-        // console.log(data.Countries);
+        covidApp.optionsList = document.querySelectorAll(".option");
+        covidApp.dropDown();
         
     });
 };
 
 covidApp.init = ()=>{
-    covidApp.dropDown();
     covidApp.getCountries();
 };
 
