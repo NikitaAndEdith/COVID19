@@ -56,18 +56,20 @@ covidApp.getCountries = () =>{
     $.ajax(setup).then(data => {
         data.Countries.forEach((item) => {
             const fullCountryName = item.Country;
-            console.log(fullCountryName);
             $('.options-container').append(`
             <div class="option">
                 <input type="radio" class="radio" id=${fullCountryName} name="category" />
                 <label for=${fullCountryName}>${fullCountryName}</label>
             </div>
             `);
+            $('.option').on('click', function () {
+                console.log(this)
+            });
         });
-        console.log(data.Countries);
+        // console.log(data.Countries);
         
-    })
-}
+    });
+};
 
 covidApp.init = ()=>{
     covidApp.dropDown();
