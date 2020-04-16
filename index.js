@@ -2,8 +2,35 @@ const covidApp = {};
 covidApp.baseUrl = "https://api.covid19api.com/";
 
 covidApp.getGlobal = ()=>{
-    
+    var settings = {
+        "url": "https://api.covid19api.com/summary",
+        "method": "GET",
+        "timeout": 0,
+    };
+
+    $.ajax(settings).then(function (response) {
+        console.log(response.Global);
+
+        const globalNewConfirmed = response.Global.NewConfirmed;
+        const globalTotalConfirmed = response.Global.TotalConfirmed;
+        const globalNewDeaths = response.Global.NewDeaths;
+        const globalTotalDeaths = response.Global.TotalDeaths;
+        const globalNewRecovered = response.Global.NewRecovered;
+        const globalTotalRecovered = response.Global.TotalRecovered;
+
+        $('.statsBox').append(`
+            <h2 class="headers">Global stats:</h2>
+            <h3 class="headers">New Cases: ${globalNewConfirmed}</h3>
+            <h3 class="headers">Total Cases: ${globalTotalConfirmed}</h3>
+            <h3 class="headers">New Deaths: ${globalNewDeaths}</h3>
+            <h3 class="headers">Total Deaths: ${globalTotalDeaths}</h3>
+            <h3 class="headers">New Recovered: ${globalNewRecovered}</h3>
+            <h3 class="headers">Total Recovered: ${globalTotalRecovered}</h3>
+        `);
+    });
 };
+
+
 
 covidApp.dropDown = () => {
     //source for the DropDown menu design and logic:  https://github.com/Godsont/Custom-Select-Box-with-Search
@@ -76,15 +103,14 @@ covidApp.getCountries = () => {
         });
         // 1. calling the drop down logic here
         covidApp.dropDown();
-        covidApp.getGlobal();
     });
 };
 
 
 
 covidApp.init = () => {
+    covidApp.getGlobal();
     covidApp.getCountries();
-    // 2. covidApp.dropDown(); //removing this function because we called it inside covidApp.getCountries
 };
 
 $(function () {
