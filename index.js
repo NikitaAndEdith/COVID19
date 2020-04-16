@@ -2,6 +2,7 @@ const covidApp = {};
 covidApp.baseUrl = "https://api.covid19api.com/";
 
 covidApp.getGlobal = ()=>{
+    //just testing
     var settings = {
         "url": "https://api.covid19api.com/summary",
         "method": "GET",
