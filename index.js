@@ -1,6 +1,9 @@
 const covidApp = {};
 covidApp.baseUrl = "https://api.covid19api.com/";
 
+covidApp.getGlobal = ()=>{
+    
+};
 
 covidApp.dropDown = () => {
     //source for the DropDown menu design and logic:  https://github.com/Godsont/Custom-Select-Box-with-Search
@@ -71,8 +74,9 @@ covidApp.getCountries = () => {
                 </div>
             `);
         });
-        covidApp.dropDown();
         // 1. calling the drop down logic here
+        covidApp.dropDown();
+        covidApp.getGlobal();
     });
 };
 
