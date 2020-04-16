@@ -1,8 +1,46 @@
 const covidApp = {};
 covidApp.baseUrl = "https://api.covid19api.com/";
 
+covidApp.getCountryStats = (country)=>{
+    var settings = {
+        "url": "https://api.covid19api.com/summary",
+        "method": "GET",
+        "timeout": 0,
+    };
+
+    $.ajax(settings).then( (data)=>{
+        // console.log(data);
+        // console.log(data.Countries);
+        // data.Countries
+        data.Countries.forEach( (item)=>{
+            // console.log(item.Country);
+            if (item.Country === country) {
+                console.log(item);
+
+                const NewConfirmed = item.NewConfirmed;
+                const TotalConfirmed = item.TotalConfirmed;
+                const NewDeaths = item.NewDeaths;
+                const TotalDeaths = item.TotalDeaths;
+                const NewRecovered = item.NewRecovered;
+                const TotalRecovered = item.TotalRecovered;
+
+
+                $('.statsBox').empty().append(`
+                    <h2 class="headers">${country} stats:</h2>
+                    <h3 class="headers">New Cases: ${NewConfirmed}</h3>
+                    <h3 class="headers">Total Cases: ${TotalConfirmed}</h3>
+                    <h3 class="headers">New Deaths: ${NewDeaths}</h3>
+                    <h3 class="headers">Total Deaths: ${TotalDeaths}</h3>
+                    <h3 class="headers">New Recovered: ${NewRecovered}</h3>
+                    <h3 class="headers">Total Recovered: ${TotalRecovered}</h3>
+                `);
+            };
+        })
+    });
+};
+
 covidApp.getGlobal = ()=>{
-    //just testing
+
     var settings = {
         "url": "https://api.covid19api.com/summary",
         "method": "GET",
@@ -10,7 +48,7 @@ covidApp.getGlobal = ()=>{
     };
 
     $.ajax(settings).then(function (response) {
-        console.log(response.Global);
+        // console.log(response.Global);
 
         const globalNewConfirmed = response.Global.NewConfirmed;
         const globalTotalConfirmed = response.Global.TotalConfirmed;
@@ -62,7 +100,9 @@ covidApp.dropDown = () => {
 
             // // 3. grabs the selected country value and saves it in a variable
             const selectedCountry = $(selected).text();
-            console.log(`User selected: ${selectedCountry}`);
+            // console.log(`User selected: ${selectedCountry}`);
+
+            covidApp.getCountryStats(selectedCountry);
         });
     });
 
