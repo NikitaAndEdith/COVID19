@@ -30,8 +30,6 @@ covidApp.getGlobal = ()=>{
     });
 };
 
-
-
 covidApp.dropDown = () => {
     //source for the DropDown menu design and logic:  https://github.com/Godsont/Custom-Select-Box-with-Search
     const selected = document.querySelector(".selected");
@@ -55,12 +53,13 @@ covidApp.dropDown = () => {
 
     //appends the list of countries in the drop down menu 
     optionsList.forEach(o => {
-        o.addEventListener("click", () => {
+        o.addEventListener("click", (event) => {
+            event.preventDefault();
             selected.innerHTML = o.querySelector("label").innerHTML;
             //closes the drop down on selection
             optionsContainer.classList.remove("active");
 
-            // 3. grabs the selected country value and saves it in a variable
+            // // 3. grabs the selected country value and saves it in a variable
             const selectedCountry = $(selected).text();
             console.log(`User selected: ${selectedCountry}`);
         });
@@ -101,7 +100,7 @@ covidApp.getCountries = () => {
                 </div>
             `);
         });
-        // 1. calling the drop down logic here
+        // calling the drop down logic here
         covidApp.dropDown();
     });
 };
