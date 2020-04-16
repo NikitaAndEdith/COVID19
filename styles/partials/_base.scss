@@ -7,6 +7,12 @@ body {
     font-family: $body-font;
     // height: 100vh;
     padding: 40px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
+    // align-content: center;
+    // text-align: center;
 }
 
 p {
@@ -167,3 +173,13 @@ h2 {
 }
 
 //drop down logic ENDS here
+
+
+.statsBox {
+  // text-align: center;
+  // align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+}

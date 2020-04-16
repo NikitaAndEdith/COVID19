@@ -15,18 +15,16 @@ covidApp.getCountryStats = (country)=>{
         data.Countries.forEach( (item)=>{
             // console.log(item.Country);
             if (item.Country === country) {
-                console.log(item);
-
-                const NewConfirmed = item.NewConfirmed;
-                const TotalConfirmed = item.TotalConfirmed;
-                const NewDeaths = item.NewDeaths;
-                const TotalDeaths = item.TotalDeaths;
-                const NewRecovered = item.NewRecovered;
-                const TotalRecovered = item.TotalRecovered;
-
+                // console.log(item);
+                
+                const NewConfirmed = item.NewConfirmed.toLocaleString();
+                const TotalConfirmed = item.TotalConfirmed.toLocaleString();
+                const NewDeaths = item.NewDeaths.toLocaleString();
+                const TotalDeaths = item.TotalDeaths.toLocaleString();
+                const NewRecovered = item.NewRecovered.toLocaleString();
+                const TotalRecovered = item.TotalRecovered.toLocaleString();
 
                 $('.statsBox').empty().append(`
-                    <h2 class="headers">${country} stats:</h2>
                     <h3 class="headers">New Cases: ${NewConfirmed}</h3>
                     <h3 class="headers">Total Cases: ${TotalConfirmed}</h3>
                     <h3 class="headers">New Deaths: ${NewDeaths}</h3>
@@ -50,12 +48,12 @@ covidApp.getGlobal = ()=>{
     $.ajax(settings).then(function (response) {
         // console.log(response.Global);
 
-        const globalNewConfirmed = response.Global.NewConfirmed;
-        const globalTotalConfirmed = response.Global.TotalConfirmed;
-        const globalNewDeaths = response.Global.NewDeaths;
-        const globalTotalDeaths = response.Global.TotalDeaths;
-        const globalNewRecovered = response.Global.NewRecovered;
-        const globalTotalRecovered = response.Global.TotalRecovered;
+        const globalNewConfirmed = response.Global.NewConfirmed.toLocaleString();
+        const globalTotalConfirmed = response.Global.TotalConfirmed.toLocaleString();
+        const globalNewDeaths = response.Global.NewDeaths.toLocaleString();
+        const globalTotalDeaths = response.Global.TotalDeaths.toLocaleString();
+        const globalNewRecovered = response.Global.NewRecovered.toLocaleString();
+        const globalTotalRecovered = response.Global.TotalRecovered.toLocaleString();
 
         $('.statsBox').append(`
             <h2 class="headers">Global stats:</h2>
