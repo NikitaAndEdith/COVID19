@@ -1,9 +1,6 @@
 const covidApp = {};
 covidApp.baseUrl = "https://api.covid19api.com/";
 
-covidApp.getGlobal = ()=>{
-    
-};
 
 covidApp.dropDown = () => {
     //source for the DropDown menu design and logic:  https://github.com/Godsont/Custom-Select-Box-with-Search
@@ -28,12 +25,13 @@ covidApp.dropDown = () => {
 
     //appends the list of countries in the drop down menu 
     optionsList.forEach(o => {
-        o.addEventListener("click", () => {
+        o.addEventListener("click", (event) => {
+            event.preventDefault();
             selected.innerHTML = o.querySelector("label").innerHTML;
             //closes the drop down on selection
             optionsContainer.classList.remove("active");
 
-            // 3. grabs the selected country value and saves it in a variable
+            // // 3. grabs the selected country value and saves it in a variable
             const selectedCountry = $(selected).text();
             console.log(`User selected: ${selectedCountry}`);
         });
@@ -74,9 +72,8 @@ covidApp.getCountries = () => {
                 </div>
             `);
         });
-        // 1. calling the drop down logic here
+        // calling the drop down logic here
         covidApp.dropDown();
-        covidApp.getGlobal();
     });
 };
 
@@ -84,7 +81,6 @@ covidApp.getCountries = () => {
 
 covidApp.init = () => {
     covidApp.getCountries();
-    // 2. covidApp.dropDown(); //removing this function because we called it inside covidApp.getCountries
 };
 
 $(function () {
