@@ -1,6 +1,68 @@
 const covidApp = {};
 covidApp.baseUrl = "https://api.covid19api.com/";
 
+const xDate = [];
+const yDeaths = [];
+const yConfirmed = [];
+
+
+// Function for mapping graph
+function graphIt(){
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: xDate,
+            datasets: [{
+                label: "Deaths",
+                fill: false,
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: yDeaths,
+            }, {
+                label: "Cases",
+                fill: false,
+                borderColor: '#ffff00',
+                data: yConfirmed,
+
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+}
+
+covidApp.getSinceDayOne = (country) => {
+    const dayOne = {
+        "url": `${covidApp.baseUrl}/total/dayone/country/${country}`,
+        "method": "GET",
+        "timeout": 500,    
+    };
+
+    $.ajax(dayOne).then((data) => {
+        // console.log(data)
+        let yesterdayDeath = 0;
+        let yesterdayCases = 0;
+        data.forEach((item) => {
+            const deathsDelta = item.Deaths - yesterdayDeath;
+            const confirmedCasesDelta = item.Confirmed - yesterdayCases;
+            const dayOneDate = item.Date.split('T')[0];
+            
+            yDeaths.push(deathsDelta);
+            yConfirmed.push(confirmedCasesDelta);
+            xDate.push(dayOneDate);
+
+            yesterdayDeath = item.Deaths;
+            yesterdayCases = item.Confirmed;
+        });
+        graphIt();
+    })
+};
+
 covidApp.getCountryStats = (country)=>{
     var settings = {
         "url": "https://api.covid19api.com/summary",
@@ -16,7 +78,7 @@ covidApp.getCountryStats = (country)=>{
             // console.log(item.Country);
             if (item.Country === country) {
                 // console.log(item);
-                
+             
                 const NewConfirmed = item.NewConfirmed.toLocaleString();
                 const TotalConfirmed = item.TotalConfirmed.toLocaleString();
                 const NewDeaths = item.NewDeaths.toLocaleString();
@@ -54,6 +116,7 @@ covidApp.getGlobal = ()=>{
         const globalTotalDeaths = response.Global.TotalDeaths.toLocaleString();
         const globalNewRecovered = response.Global.NewRecovered.toLocaleString();
         const globalTotalRecovered = response.Global.TotalRecovered.toLocaleString();
+        
 
         $('.statsBox').append(`
             <h2 class="headers">Global stats:</h2>
@@ -101,6 +164,8 @@ covidApp.dropDown = () => {
             // console.log(`User selected: ${selectedCountry}`);
 
             covidApp.getCountryStats(selectedCountry);
+            covidApp.getSinceDayOne(selectedCountry);
+
         });
     });
 
