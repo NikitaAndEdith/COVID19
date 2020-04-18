@@ -40,7 +40,7 @@ covidApp.getSinceDayOne = (country) => {
     const dayOne = {
         "url": `${covidApp.baseUrl}/total/dayone/country/${country}`,
         "method": "GET",
-        "timeout": 500,    
+        "timeout": 500    
     };
 
     $.ajax(dayOne).then((data) => {
@@ -50,6 +50,7 @@ covidApp.getSinceDayOne = (country) => {
         data.forEach((item) => {
             const deathsDelta = item.Deaths - yesterdayDeath;
             const confirmedCasesDelta = item.Confirmed - yesterdayCases;
+
             const dayOneDate = item.Date.split('T')[0];
             
             yDeaths.push(deathsDelta);
