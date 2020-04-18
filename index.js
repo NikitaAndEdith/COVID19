@@ -25,12 +25,12 @@ covidApp.getCountryStats = (country)=>{
                 const TotalRecovered = item.TotalRecovered.toLocaleString();
 
                 $('.statsBox').empty().append(`
-                    <h3 class="headers">New Cases: ${NewConfirmed}</h3>
-                    <h3 class="headers">Total Cases: ${TotalConfirmed}</h3>
-                    <h3 class="headers">New Deaths: ${NewDeaths}</h3>
-                    <h3 class="headers">Total Deaths: ${TotalDeaths}</h3>
-                    <h3 class="headers">New Recovered: ${NewRecovered}</h3>
-                    <h3 class="headers">Total Recovered: ${TotalRecovered}</h3>
+                    <tr class="headers"><td>New Cases:</td><td>${NewConfirmed}</td></tr>
+                    <tr class="headers"><td>Total Cases:</td><td>${TotalConfirmed}</td></tr>
+                    <tr class="headers"><td>New Deaths:</td><td>${NewDeaths}</td></tr>
+                    <tr class="headers"><td>Total Deaths:</td><td>${TotalDeaths}</td></tr>
+                    <tr class="headers"><td>New Recovered:</td><td>${NewRecovered}</td></tr>
+                    <tr class="headers"><td>Total Recovered:</td><td>${TotalRecovered}</td></tr>
                 `);
             };
         })
@@ -56,13 +56,27 @@ covidApp.getGlobal = ()=>{
         const globalTotalRecovered = response.Global.TotalRecovered.toLocaleString();
 
         $('.statsBox').append(`
-            <h2 class="headers">Global stats:</h2>
-            <h3 class="headers">New Cases: ${globalNewConfirmed}</h3>
-            <h3 class="headers">Total Cases: ${globalTotalConfirmed}</h3>
-            <h3 class="headers">New Deaths: ${globalNewDeaths}</h3>
-            <h3 class="headers">Total Deaths: ${globalTotalDeaths}</h3>
-            <h3 class="headers">New Recovered: ${globalNewRecovered}</h3>
-            <h3 class="headers">Total Recovered: ${globalTotalRecovered}</h3>
+            <tr>
+                <th class="headers">Global stats:</th>
+            </tr>  
+            <tr>
+                <td class="headers">New Cases:</td><td>${globalNewConfirmed}</td>
+            </tr>
+            <tr>
+                <td class="headers">Total Cases:</td><td>${globalTotalConfirmed}</td>
+            </tr>
+            <tr>
+                <td class="headers">New Deaths:</td><td>${globalNewDeaths}</td>
+            </tr>
+            <tr>
+                <td class="headers">Total Deaths:</td><td>${globalTotalDeaths}</td>
+            </tr>
+            <tr>
+                <td class="headers">New Recovered:</td><td>${globalNewRecovered}</td>
+            </tr>
+            <tr>
+                <td class="headers">Total Recovered:</td><td>${globalTotalRecovered}</td>
+            </tr>
         `);
     });
 };
@@ -78,6 +92,9 @@ covidApp.dropDown = () => {
         //listens for a click on Please Select Country box
         //adds a class Active to it
         optionsContainer.classList.toggle("active");
+
+        //don't show the table when the menu is open
+        $(".statsBox").css("opacity", "0");
 
         searchBox.value = "";
         filterList("");
@@ -96,7 +113,10 @@ covidApp.dropDown = () => {
             //closes the drop down on selection
             optionsContainer.classList.remove("active");
 
-            // // 3. grabs the selected country value and saves it in a variable
+            //don't show the table when the menu is open
+            $(".statsBox").css("opacity", "1");
+
+            // 3. grabs the selected country value and saves it in a variable
             const selectedCountry = $(selected).text();
             // console.log(`User selected: ${selectedCountry}`);
 
