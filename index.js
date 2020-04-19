@@ -59,7 +59,7 @@ covidApp.getSinceDayOne = (country) => {
     };
 
     $.ajax(dayOne).then((data) => {
-        // console.log(data)
+        console.log(data);
         
         let yesterdayDeath = 0;
         let yesterdayCases = 0;
