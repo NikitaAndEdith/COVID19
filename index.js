@@ -1,38 +1,53 @@
 const covidApp = {};
 covidApp.baseUrl = "https://api.covid19api.com/";
 
-const xDate = [];
-const yDeaths = [];
-const yConfirmed = [];
-
+covidApp.xDate = [];
+covidApp.yDeaths = [];
+covidApp.yConfirmed = [];
+covidApp.yTotalCases  = [];
+covidApp.yTotalDeaths = [];
 
 // Function for mapping graph
 function graphIt(){
     const ctx = document.getElementById('myChart').getContext('2d');
     const chart = new Chart(ctx, {
-        // The type of chart we want to create
         type: 'line',
-
         // The data for our dataset
         data: {
-            labels: xDate,
+            labels: covidApp.xDate,
             datasets: [{
-                label: "Deaths",
+                label: "Deaths per day",
                 fill: false,
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: yDeaths,
+                backgroundColor: '#c51107',
+                borderColor: '#c51107',
+                data: covidApp.yDeaths
             }, {
-                label: "Cases",
+                label: "New cases",
                 fill: false,
+                backgroundColor: '#ffff00',
                 borderColor: '#ffff00',
-                data: yConfirmed,
-
-            }]
-        },
-
-        // Configuration options go here
-        options: {}
+                data: covidApp.yConfirmed
+            }, {
+                label: "Total Cases",
+                fill: false,
+                backgroundColor: '#07c56e',
+                borderColor: '#07c56e',
+                data: covidApp.yTotalCases
+            }, {
+                label: "Total Deaths",
+                fill: false,
+                backgroundColor: '#3614b2',
+                borderColor: '#3614b2',
+                data: covidApp.yTotalDeaths
+            }],
+            options: {
+                title: {
+                display: true,
+                text: 'Statistics since first confirmed national case'
+    
+                }
+            }
+        }
     });
 }
 
@@ -45,17 +60,20 @@ covidApp.getSinceDayOne = (country) => {
 
     $.ajax(dayOne).then((data) => {
         // console.log(data)
+        
         let yesterdayDeath = 0;
         let yesterdayCases = 0;
         data.forEach((item) => {
             const deathsDelta = item.Deaths - yesterdayDeath;
             const confirmedCasesDelta = item.Confirmed - yesterdayCases;
-
+            const TotalCases = item.Confirmed;
             const dayOneDate = item.Date.split('T')[0];
             
-            yDeaths.push(deathsDelta);
-            yConfirmed.push(confirmedCasesDelta);
-            xDate.push(dayOneDate);
+            covidApp.yDeaths.push(deathsDelta);
+            covidApp.yConfirmed.push(confirmedCasesDelta);
+            covidApp.yTotalCases.push(TotalCases);
+            covidApp.xDate.push(dayOneDate);
+            covidApp.yTotalDeaths.push(item.Deaths);
 
             yesterdayDeath = item.Deaths;
             yesterdayCases = item.Confirmed;
@@ -206,8 +224,6 @@ covidApp.dropDown = () => {
     };
 };
 
-
-
 covidApp.getCountries = () => {
     const setup = {
         "url": `${covidApp.baseUrl}summary`,
@@ -229,8 +245,6 @@ covidApp.getCountries = () => {
         covidApp.dropDown();
     });
 };
-
-
 
 covidApp.init = () => {
     covidApp.getGlobal();
