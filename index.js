@@ -43,7 +43,7 @@ function graphIt(){
             options: {
                 title: {
                 display: true,
-                text: 'Statistics since first confirmed national case',
+                text: 'Statistics since first confirmed national case'
     
                 }
             }
