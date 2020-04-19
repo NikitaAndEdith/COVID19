@@ -21,15 +21,20 @@ function graphIt(){
                 fill: false,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: yDeaths,
+                data: yDeaths
             }, {
-                label: "Cases",
+                label: "Daily Cases",
+                fill: false,
+                borderColor: '#ffff00',
+                data: yConfirmed
+            },
+            {
+                label: "Total Cases",
                 fill: false,
                 borderColor: '#ffff00',
                 data: yConfirmed,
-
-            }]
-        },
+            }
+        ]},
 
         // Configuration options go here
         options: {}
@@ -79,7 +84,6 @@ covidApp.getCountryStats = (country)=>{
             // console.log(item.Country);
             if (item.Country === country) {
                 // console.log(item);
-             
                 const NewConfirmed = item.NewConfirmed.toLocaleString();
                 const TotalConfirmed = item.TotalConfirmed.toLocaleString();
                 const NewDeaths = item.NewDeaths.toLocaleString();
@@ -186,7 +190,6 @@ covidApp.dropDown = () => {
 
             covidApp.getCountryStats(selectedCountry);
             covidApp.getSinceDayOne(selectedCountry);
-
         });
     });
 
