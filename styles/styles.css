@@ -241,6 +241,12 @@ html {
 
 body {
   background-color: #b8dbd9;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
   font-family: "Merriweather", serif;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -253,6 +259,12 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 450px) {
+  .wrapper {
+    width: 95%;
+  }
 }
 
 p {
@@ -284,8 +296,14 @@ a
 }
 
 .container {
+  max-width: 400px;
   text-align: center;
-  padding: 32px;
+}
+
+@media (max-width: 450px) {
+  .container {
+    width: 100%;
+  }
 }
 
 .select-box {
@@ -293,12 +311,11 @@ a
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 400px;
+  width: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin: 0 auto;
 }
 
 .select-box .options-container {
@@ -413,10 +430,17 @@ a
 }
 
 .statsBox {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.6);
   text-align: left;
-  margin-top: -60px;
+  margin: 0 auto;
+}
+
+@media (max-width: 450px) {
+  .statsBox {
+    width: 95%;
+  }
 }
 
 .statsBox td {
@@ -441,12 +465,15 @@ footer {
   text-align: center;
   padding: 3px;
   position: absolute;
-  bottom: 20px;
   height: 1rem;
 }
 
 footer p {
-  color: #f4f4f9;
+  color: white;
   font-size: .7rem;
+}
+
+footer a {
+  color: #b8dbd9;
 }
 /*# sourceMappingURL=styles.css.map */
