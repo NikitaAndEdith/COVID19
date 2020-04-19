@@ -172,7 +172,8 @@ covidApp.dropDown = () => {
 
         //don't show the table when the menu is open
         $(".statsBox").css("opacity", "0");
-
+        $("#myChart").css("opacity", "0");
+        
         searchBox.value = "";
         filterList("");
 
@@ -192,6 +193,7 @@ covidApp.dropDown = () => {
 
             //don't show the table when the menu is open
             $(".statsBox").css("opacity", "1");
+            $("#myChart").css("opacity", "1");
 
             // 3. grabs the selected country value and saves it in a variable
             const selectedCountry = $(selected).text();
