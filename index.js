@@ -53,9 +53,9 @@ function graphIt(){
 
 covidApp.getSinceDayOne = (country) => {
     const dayOne = {
-        "url": `${covidApp.baseUrl}/total/dayone/country/${country}`,
-        "method": "GET",
-        "timeout": 500    
+        url: `${covidApp.baseUrl}total/dayone/country/${country}`,
+        method: "GET",
+        timeout: 500    
     };
 
     $.ajax(dayOne).then((data) => {
@@ -68,6 +68,7 @@ covidApp.getSinceDayOne = (country) => {
             const confirmedCasesDelta = item.Confirmed - yesterdayCases;
             const TotalCases = item.Confirmed;
             const dayOneDate = item.Date.split('T')[0];
+            // console.log(dayOneDate);
             
             covidApp.yDeaths.push(deathsDelta);
             covidApp.yConfirmed.push(confirmedCasesDelta);
@@ -83,21 +84,16 @@ covidApp.getSinceDayOne = (country) => {
 };
 
 covidApp.getCountryStats = (country)=>{
-    var settings = {
-        "url": "https://api.covid19api.com/summary",
-        "method": "GET",
-        "timeout": 0,
+    const settings = {
+        url: `${covidApp.baseUrl}summary`,
+        method: "GET",
+        timeout: 0
     };
 
     $.ajax(settings).then( (data)=>{
-        // console.log(data);
-        // console.log(data.Countries);
         // data.Countries
         data.Countries.forEach( (item)=>{
-            // console.log(item.Country);
-            if (item.Country === country) {
-                // console.log(item);
-             
+            if (item.Country === country) {             
                 const NewConfirmed = item.NewConfirmed.toLocaleString();
                 const TotalConfirmed = item.TotalConfirmed.toLocaleString();
                 const NewDeaths = item.NewDeaths.toLocaleString();
@@ -106,6 +102,7 @@ covidApp.getCountryStats = (country)=>{
                 const TotalRecovered = item.TotalRecovered.toLocaleString();
 
                 $('.statsBox').empty().append(`
+                    <tr><th class="headers">Stats by Country:</th></tr>
                     <tr class="headers"><td>New Cases:</td><td>${NewConfirmed}</td></tr>
                     <tr class="headers"><td>Total Cases:</td><td>${TotalConfirmed}</td></tr>
                     <tr class="headers"><td>New Deaths:</td><td>${NewDeaths}</td></tr>
@@ -119,16 +116,13 @@ covidApp.getCountryStats = (country)=>{
 };
 
 covidApp.getGlobal = ()=>{
-
-    var settings = {
-        "url": "https://api.covid19api.com/summary",
-        "method": "GET",
-        "timeout": 0,
+    const settings = {
+        url: `${covidApp.baseUrl}summary`,
+        method: "GET",
+        timeout: 0
     };
 
     $.ajax(settings).then(function (response) {
-        // console.log(response.Global);
-
         const globalNewConfirmed = response.Global.NewConfirmed.toLocaleString();
         const globalTotalConfirmed = response.Global.TotalConfirmed.toLocaleString();
         const globalNewDeaths = response.Global.NewDeaths.toLocaleString();
@@ -226,9 +220,9 @@ covidApp.dropDown = () => {
 
 covidApp.getCountries = () => {
     const setup = {
-        "url": `${covidApp.baseUrl}summary`,
-        "method": "GET",
-        "timeout": 0
+        url: `${covidApp.baseUrl}summary`,
+        method: "GET",
+        timeout: 0
     };
 
     $.ajax(setup).then(data => {
