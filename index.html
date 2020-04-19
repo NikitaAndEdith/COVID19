@@ -11,17 +11,15 @@
 </head>
 
 <body>
-    <h1 class="title headers">COVID-19 Tracker</h1>
-    <div>
+    <div class="wrapper">
+        <h1 class="title headers">COVID-19 Tracker</h1>
+
         <!-- drop down menu goes here Source: https://github.com/Godsont/Custom-Select-Box-with-Search -->
         <!-- Arrow image for the drop down menu made by Freepik at https://www.flaticon.com/authors/freepik -->
         <div class="container">
             <h2 class="headers">See the latest stats by nation</h2>
             <div class="select-box">
                 <div class="options-container">
-                    <!-- <div class="option"> -->
-                    <!-- <input type="radio" class="radio" id="automobiles" name="category" />
-                        <label for="automobiles">Automobiles</label> -->
                 </div>
                 <div class="selected">
                     Please Select Country
@@ -30,13 +28,14 @@
                     <input type="text" placeholder="Start Typing..." />
                 </div>
             </div>
+            <table class="statsBox"></table>
         </div>
+        <canvas id="myChart">
+        </canvas>
     </div>
-    <table class="statsBox"></table>
-    <canvas id="myChart">
-    </canvas>
     <footer>
-        <p><a href="https://www.nikitaguliaev.com" target="_blank">Nikita Guliaev</a> & <a href="https://www.edithwerbel.com" target="_blank">Edith Werbel</a> © 2020</p>
+        <p><a href="https://www.nikitaguliaev.com" target="_blank">Nikita Guliaev</a> & <a
+                href="https://www.edithwerbel.com" target="_blank">Edith Werbel</a> © 2020</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <!-- drop down menu ends here -->
