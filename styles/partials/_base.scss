@@ -85,10 +85,10 @@ a
   background-size: contain;
   background-repeat: no-repeat;
   position: absolute;
-  height: 100%;
-  width: 32px;
-  right: 10px;
-  top: 5px;
+    height: 100%;
+    width: 28px;
+    right: 10px;
+    top: 10px;
 
   transition: all 0.4s;
 }
@@ -102,7 +102,7 @@ a
 
 .select-box .options-container.active + .selected::after {
   transform: rotateX(180deg);
-  top: -6px;
+  top: -9px;
 }
 
 .select-box .options-container::-webkit-scrollbar {
