@@ -253,7 +253,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-bottom: 1rem;
 }
 
 p {
@@ -417,7 +416,7 @@ a
   width: 400px;
   border: 1px solid rgba(0, 0, 0, 0.6);
   text-align: left;
-  margin-top: -40px;
+  margin-top: -60px;
 }
 
 .statsBox td {
@@ -442,7 +441,7 @@ footer {
   text-align: center;
   padding: 3px;
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   height: 1rem;
 }
 
