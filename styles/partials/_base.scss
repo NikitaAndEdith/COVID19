@@ -4,13 +4,21 @@ html {
 
 body {
     background-color: $tertiary-accent;
-    font-family: $body-font;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    align-items: center;
-    // padding-bottom: 1rem;
+}
 
+.wrapper {
+  max-width: 1200px;
+  width: 80%;
+  margin: 0 auto;
+  font-family: $body-font;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+
+  @media(max-width:450px){
+    width: 95%;
+  }
 }
 
 p {
@@ -46,16 +54,19 @@ a
 }
 
 .container {
+  max-width: 400px;
   text-align: center;
-  padding: 32px;
+
+  @media(max-width:450px){
+    width: 100%;
+  }
 }
 
 .select-box {
   position: relative;
   display: flex;
-  width: 400px;
+  width: 100%;
   flex-direction: column;
-  margin: 0 auto;
 }
 
 .select-box .options-container {
@@ -166,11 +177,16 @@ a
 //drop down logic ENDS here
 
 .statsBox {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.6);
   text-align: left;
-  // padding: 32px;
-  margin-top: -60px;
+  // margin-top: -60px;
+  margin: 0 auto;
+
+  @media(max-width:450px){
+    width: 95%;
+  }
 }
 
 .statsBox td {
@@ -196,11 +212,13 @@ footer {
   text-align: center;
   padding: 3px;
   position: absolute;
-  bottom: 20px;
-  // left: 0;
+  // bottom: 20px;
   height: 1rem;
   p {
-    color: $background-color;
+    color: white;
     font-size: .7rem;
+  }
+  a {
+    color: $tertiary-accent;
   }
 }
