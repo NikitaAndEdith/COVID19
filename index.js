@@ -64,6 +64,7 @@ covidApp.getSinceDayOne = (country) => {
         let yesterdayDeath = 0;
         let yesterdayCases = 0;
         data.forEach((item) => {
+            console.log(item);
             const deathsDelta = item.Deaths - yesterdayDeath;
             const confirmedCasesDelta = item.Confirmed - yesterdayCases;
             const TotalCases = item.Confirmed;
