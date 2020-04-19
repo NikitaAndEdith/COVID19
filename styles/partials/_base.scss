@@ -5,11 +5,12 @@ html {
 body {
     background-color: $tertiary-accent;
     font-family: $body-font;
-    padding: 40px;
     display: flex;
     flex-direction: column;
-    // justify-content: center;
+    position: relative;
     align-items: center;
+    padding-bottom: 1rem;
+
 }
 
 p {
@@ -73,7 +74,7 @@ a
   background: $primary-accent;
   border-radius: 8px;
   margin-bottom: 8px;
-  color: $tertiary-accent;
+  color: $background-color;
   position: relative;
   order: 0;
 }
@@ -96,7 +97,7 @@ a
   max-height: 240px;
   opacity: 1;
   overflow-y: scroll;
-  color: $tertiary-accent;
+  color: $background-color;
 }
 
 .select-box .options-container.active + .selected::after {
@@ -183,4 +184,22 @@ a
 
 .statsBox th {
   font-size: 26px;
+}
+
+#myChart {
+  margin: 50px 100px; 
+}
+
+footer {
+  background-color: $primary-accent;
+  width: 100%;
+  text-align: center;
+  padding: 3px;
+  position: absolute;
+  bottom: 0;
+  height: 1rem;
+   p {
+     color: $background-color;
+     font-size: .7rem;
+   }
 }
