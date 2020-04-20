@@ -50,7 +50,7 @@ function graphIt(){
         }
     });
 }
-
+// get indiviual counties stats since first confirmed case
 covidApp.getSinceDayOne = (country) => {
     const dayOne = {
         url: `${covidApp.baseUrl}total/dayone/country/${country}`,
@@ -64,12 +64,12 @@ covidApp.getSinceDayOne = (country) => {
         let yesterdayDeath = 0;
         let yesterdayCases = 0;
         data.forEach((item) => {
-            console.log(item);
+            // calc to determine cases per day, not accumulative
             const deathsDelta = item.Deaths - yesterdayDeath;
             const confirmedCasesDelta = item.Confirmed - yesterdayCases;
             const TotalCases = item.Confirmed;
+            // reformat date
             const dayOneDate = item.Date.split('T')[0];
-            // console.log(dayOneDate);
             
             covidApp.yDeaths.push(deathsDelta);
             covidApp.yConfirmed.push(confirmedCasesDelta);
@@ -83,7 +83,7 @@ covidApp.getSinceDayOne = (country) => {
         graphIt();
     })
 };
-
+// get current accumulative stats for each country when selected
 covidApp.getCountryStats = (country)=>{
     const settings = {
         url: `${covidApp.baseUrl}summary`,
@@ -92,9 +92,9 @@ covidApp.getCountryStats = (country)=>{
     };
 
     $.ajax(settings).then( (data)=>{
-        // data.Countries
         data.Countries.forEach( (item)=>{
-            if (item.Country === country) {             
+            if (item.Country === country) {  
+               //    add commas to numbers
                 const NewConfirmed = item.NewConfirmed.toLocaleString();
                 const TotalConfirmed = item.TotalConfirmed.toLocaleString();
                 const NewDeaths = item.NewDeaths.toLocaleString();
@@ -116,6 +116,7 @@ covidApp.getCountryStats = (country)=>{
     });
 };
 
+// get current global accumlative stats
 covidApp.getGlobal = ()=>{
     const settings = {
         url: `${covidApp.baseUrl}summary`,
@@ -220,6 +221,8 @@ covidApp.dropDown = () => {
         });
     };
 };
+
+// get names of all countries to populate dropdown menu
 
 covidApp.getCountries = () => {
     const setup = {
