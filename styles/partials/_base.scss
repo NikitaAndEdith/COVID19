@@ -3,7 +3,8 @@ html {
 }
 
 body {
-    background-color: $tertiary-accent;
+    background-color: $background-color;
+    min-height: 600px;
 }
 
 .wrapper {
@@ -24,22 +25,20 @@ body {
 p {
     font-family: $body-font;
     color: $font-color;
-    
-}
-
-.headers {
-    font-family: $heading-font;
-    margin-bottom: 10px;
-    
 }
 
 h1 {
+    font-family: $heading-font;
     font-size: 2rem;
     text-align: center;
+    color: $primary-accent;
+    text-shadow: 1px 1px 1px $tertiary-accent;
 }
 
 h2 {
   margin-bottom: 10px;
+  font-family: $heading-font;
+  font-weight: 300;
 }
 
 
@@ -72,6 +71,7 @@ a
 .select-box .options-container {
   background: $primary-accent;
   color: $tertiary-accent;
+  box-shadow: 1px 1px 1px $tertiary-accent;
   max-height: 0;
   width: 100%;
   opacity: 0;
@@ -82,6 +82,7 @@ a
 }
 
 .selected {
+  font-family: $heading-font;
   background: $primary-accent;
   border-radius: 8px;
   margin-bottom: 8px;
@@ -109,6 +110,8 @@ a
   opacity: 1;
   overflow-y: scroll;
   color: $background-color;
+  font-family: $heading-font;
+
 }
 
 .select-box .options-container.active + .selected::after {
@@ -134,7 +137,7 @@ a
 }
 
 .select-box .option:hover {
-  background: #414b57;
+  background: $seconday-accent;
   margin: 0 auto;
 }
 
@@ -152,7 +155,7 @@ a
 .search-box input {
   width: 100%;
   padding: 12px 16px;
-  font-family: "Roboto", sans-serif;
+  font-family: $heading-font;
   font-size: 16px;
   border-radius: 8px;
   z-index: 100;
@@ -179,7 +182,7 @@ a
 .statsBox {
   max-width: 400px;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border: 1px solid $primary-accent;
   text-align: left;
   // margin-top: -60px;
   margin: 0 auto;
@@ -190,7 +193,7 @@ a
 }
 
 .statsBox td {
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border: 1px solid $primary-accent;
 
   }
 
